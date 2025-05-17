@@ -1,4 +1,4 @@
-function [timeDomain_signal] = PRACH_modulation_main(resourceGrid, prachConfig, carrierConfig, PrachConfigFR1UnpairedSpectrum)
+function [timeDomain_signal, u] = PRACH_modulation_main(resourceGrid, prachConfig, carrierConfig, PrachConfigFR1UnpairedSpectrum)
 
 % % Number of sample of 1 slot (= 1ms) for 15kHz
 % default_numSample_perSlot = 30720;
@@ -207,7 +207,8 @@ ifftin = zeros(nfft, 1);
 
 % Zero padding
 ifftin((0:(PrachConfigFR1UnpairedSpectrum.L_RA - 1)) + first) = y_uv;
-
+% ifftin = fftshift(ifftin);
+% ifftin = fftshift(ifftin);
 ifftout = ifft(fftshift(ifftin), nfft);
 
 % n Prach symbols in time domain.
